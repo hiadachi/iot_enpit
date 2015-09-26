@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 require 'sinatra'
-require 'rakuten_web_service'
+#require 'sinatra/reloader'
 
-#参考: https://github.com/k2works/sinatra_rakuten_api
-
+#URL / でアクセス
 get '/' do
-  RakutenWebService.configuration do |c|
-    c.application_id = ENV["APPID"]
-    c.affiliate_id = ENV["AFID"]
-  end
+  erb :views1
+end
 
-  # Use genre id to fetch genre object
-  @rankings = RakutenWebService::Ichiba::Genre[100337].ranking
-  erb :item_ranking
+get '/alert' do
+  erb :views2 
+end
+
+#URL /hoge でアクセス
+get '/hoge' do
+  @content = "main content"
+  erb :hoge,:locals => {:content => content}
 end
